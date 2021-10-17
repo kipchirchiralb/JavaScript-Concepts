@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Arrow Functions</title>
+</head>
+
+<body>
+    <h1>Arrow Functions</h1>
+
+    <script>
+        //normal function
+        function sum(a, b) {
+            return a + b
+        }
+        //arrow function
+        const add = (x, y) => {
+                return x + y
+            }
+            //both functions(add and sum) work the same way
+        console.log(sum(2, 3))
+        console.log(add(2, 3))
+
+        /*
+        * WHY USE ARROW FUNCTIONS?
+        * If you only have one parameter , you can leave out the parenthesis around the parameter
+        * Arrow functons support implicit returns. This means that if you only have one line in your function which is returning something , you can put it on one line without the return statement. 
+        *  Anonymous Arrow Functions - here you can leave out the entire name and variable declaration of thefunction, making anonymous functions much cleaner.
+        * Arrow function Scoping - in a normal function a the "this" keyword is scoped based the context of where the function is called. With Arrow functions, the scope of "this" keyword is based on where the function is defined just like in other programming languages. I am confused a little but let me take a deeper dive. 
+
+        */
+
+        //single parameter
+        const isPositive = number => {
+            return number >= 0
+        }
+
+        console.log(isPositive(-1))
+
+        //implicit return
+
+        const randomNumber = () => Math.floor(Math.random() * 10)
+
+        console.log(randomNumber())
+            //anonymus arrow function
+        document.addEventListener("mouseover", () => {
+            let letters = "0123456789ABCDEF"
+            let color = "#"
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)]
+            }
+            document.body.style.backgroundColor = color
+        })
+
+        //semi-anonymous arrow functions
+        document.addEventListener("click", (e) => {
+            let x = e.clientX
+            let y = e.clientY
+            let currentCollor = getComputedStyle(document.body).getPropertyValue("background-color")
+            console.log(`You clicked point(${x}, ${y}) on the document, current color is ${currentCollor} `)
+        })
+
+        //Arrow function scoping
+        class Person {
+            constructor(name) {
+                this.name = name
+            }
+
+            printNameArrow() {
+                setTimeout(() => {
+                    console.log(`Arrow: ${this.name}`)
+                }, 100)
+            }
+
+            printNameFunction() {
+                setTimeout(function() {
+                    console.log(`Function: ${this.name}`)
+                }, 100)
+            }
+        }
+
+        const person = new Person("Albert")
+        person.printNameArrow() //
+        person.printNameFunction() //
+    </script>
+
+</body>
+
+</html>

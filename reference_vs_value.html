@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .wrapper {
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+    <title>Reference vs Value</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Pass by value and pass by Reference</h1>
+
+    </div>
+    <script>
+        /*
+                                                //********************PART 1****
+                                                // pass by value / setting by value - taking anything that is on the right hand side of the equal sign and copie its value to the variable on the left hand side of the equals sign.
+
+                                                let a = 10
+                                                let b = "Hi"
+                                                let c = a
+                                                console.log(a)
+                                                console.log(b)
+                                                console.log(c)
+
+                                                c = c + 1
+
+                                                console.log(c)
+
+                                                //Anything tha is not a primitive type (boolean , string , integer) is passed by reference. These include objects such as arrays and objects
+                                                // a reference(a memory address) to that object or array is stored in the value of the variable
+                                                c = [1, 2]
+                                                console.log(c)
+                                                let d = c // takes value of c and copies to d which are references to memory. these two will point to the same adrress.
+                                                console.log(d)
+                                                d.push(3) //will change both c and d since they both point to the same address. THIS IS WHERE WE MIGHT RUN INTO BUGS/ ERRORS
+                                                console.log(d) //[1,2,3]
+                                                console.log(c) //[1,2,3]
+
+                                                d = [3, 4, 5] //Another pointer to a new place in memory that is holding the array [3,4,5]. This overrides the value of d but c remains the same.
+                                                console.log(d)
+                                                console.log(c) // [1,2,3]
+                                                d.push(6)
+                                                d.push(7)
+                                                console.log(d)
+                                                console.log(c)
+
+                                                //practical difference 
+
+                                                let x = [1, 2]
+                                                let y = x // y is getting x by value , this value is the reference to the array [1,2]
+                                                console.log(x === y) //true
+                                                console.log(x == y) //true
+
+                                                y = [1,2] // y is getting its own memory address / references which is different from x's . 
+                                                console.log(x === y) //false - since we are comparing two different references to locations in memory
+                                                console.log(x == y) //false - same case
+                                                */
+
+
+
+        //*********PART 2**
+        let c = [1, 2]
+        add(c, 3)
+
+        function add(array, element) {
+            array.push(element)
+        }
+        console.log(c)
+
+        //PRIMITIVE VALUES such as numbers, strings, boolean, undefined, null are passed by values 
+
+        // arrays, objects , classes etc are passed by reference.They can be modified without changing their memory location
+        //e.g
+        const k = [1, 2, 3]
+        k.push(15) //we can modify the values in the array but not the location/ refernence in memory
+        console.log(k)
+    </script>
+</body>
+
+</html>

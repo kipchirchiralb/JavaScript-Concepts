@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Object Destructuring</title>
+</head>
+
+<body>
+    <h1>Object Destructuring</h1>
+
+    <script>
+        const alphabet = ["A", "B", "C", "D", "E", "F"]
+        const numbers = ["1", "2", "3", "4", "5", "6"]
+            // const a = alphabet[0] 
+            // const b = alphabet[1]
+            // alternative using destructuring
+        const [a, , c, ...rest] = alphabet
+        //we can use the spread operator too
+        //the spread operator can be used to combine objects 
+        const newArray = [...alphabet, ...numbers]
+        console.log(a)
+        console.log(c)
+        console.log(rest)
+        console.log(newArray)
+        console.log("%c destructuring an array with default valued vars", "color:green")
+            //now function destructuring 
+            // we can add a default value eg no division below 
+        function sumAndMultiply(x, y) {
+            return [x + y, x * y]
+        }
+        const [sum, multiply, division = "No division"] = sumAndMultiply(1, 2)
+        console.log(sum)
+        console.log(multiply)
+        console.log(division)
+        console.log("%c destructuring an OBJECT", "color:green")
+        const personOne = {
+            firstName: "John",
+            secondName: "Doe",
+            gender: "male",
+            age: 18,
+            address: {
+                city: "Nairobi",
+                state: "Central"
+            }
+        }
+        const personTwo = {
+            firstName: "John",
+            secondName: "Doe",
+            gender: "male",
+            age: 18,
+            address: {
+                city: "Nairobi",
+                state: "Central"
+            }
+        }
+        const newPersonOne = {
+            firstName: "Albert",
+            userName: "albert",
+            age: 26,
+            favouriteFood: "Githeri",
+            address: {
+                city: "Eldoret",
+                state: "Rift"
+            },
+            mantra: "keep pushing"
+        }
+
+        const personTwo = {
+                firstName: "unknown",
+                age = "18",
+                favouriteFood = "Chapati"
+            }
+            //18 and chapati are default values
+        console.log(firstName)
+        console.log(age)
+        console.log(favouriteFood)
+            // using the spread operator 
+        const {
+            name: firstName,
+            address: {
+                city
+            },
+            ...everythingElse
+        } = personTwo
+
+        console.log(firstName)
+        console.log(city)
+        console.log(everythingElse)
+            //merging/combiining objets\\
+        console.log("%ccombining 2 OBJECT", "color:green")
+        const albert = {...personOne,
+            ...newPersonOne
+        }
+        console.log(albert) // newPerson with allperson one attributes - merging 
+
+        console.log("%ccombining 2 OBJECTS- newPerson with all person one attributes - merging", "color:green")
+
+        const newPersonTwo = {
+            firstName: "Michael",
+            secondName: "Kibet",
+            userName: "michaelSmith",
+            age: 30,
+            car: true,
+            pets: ["dogs", "cats"],
+            address: {
+                street: "west",
+                city: "eldoret",
+                state: "north rift"
+            }
+        }
+        const michaelSmith = {...personOne,
+                ...newPersonTwo
+            }
+            // console.log(michaelSmith) 
+        const {
+            gender: sex,
+            ...otherInfo
+        } = michaelSmith
+        console.log(michaelSmith)
+            // console.log(michaelSmith.address.state)
+
+        // using object destructuring inside functions as arguments 
+        function printUSer({
+            firstName = "John",
+            secondName = "Doe",
+            age = 18
+        }) {
+            console.log(`Name is : ${firstName} ${secondName}. Age is : ${age}`)
+        }
+        printUSer(newPersonOne)
+
+
+        // *************NOTES
+        /* DESTRUCTURING is when you decompose the properties of an object or the idexes of an array to separate them to create specific variables. In other words , it is a technique that takes properties from onjects or values from arrays and set them local
+        variables ARRAYS[] have number indexes while OBJECTS{} have string indexes. We can however put arrays in objets and objects in arrays too. */
+        const [alpt, , cu] = [5, 2, 3, 4, 4, 3]
+        console.log(cu)
+            // swap 
+            // let j = 10 
+            // let k = 40 
+            // [j, k] = [k, j]
+            // console.log(f)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Closures</h1>
+    </div>
+    <script>
+        //nested functions have access to variables declared in their outer scope
+        //lexical scoping describes how a parser resolves variable names when functions are nested.
+        function makeFunc() {
+            var name = 'Mozilla';
+
+            function displayName() {
+                // alert(name);
+                console.log(name)
+            }
+            return displayName
+        }
+        let myFunc = makeFunc()
+        myFunc()
+            /*
+             *displayName() innner function is returned from the outer function before being exeuted
+             * This is posible because functions in Javascript have closures.
+             * a CLOSURE is a combination of a function and the lexical enviroment within which a function was declared.
+             * in this case, the instance of displayName mantains a reference to its lexical enviroment, within which the variable name exists. 
+             
+             */
+
+
+        //MORE INTERESTING EXAMPLE
+        function makeAdder(x) {
+            return function(y) {
+                return x + y;
+            };
+        }
+
+        var add5 = makeAdder(5);
+        var add10 = makeAdder(10);
+
+        console.log(add5(2)); // 7
+        console.log(add10(2)); // 12
+        //makeAdder() is a function factory. It creates fuctions that can add a specific value to their argument.
+        //in this case the factory function creates two new functions , add5() which adds 5 to its argument, and add10() which adds 10 to its parameter
+        //add5 and add10 are both closures. They share the same function body definition, but store different lexical enviroments, one with x as 5 and the other with x as 10.
+
+        //PRACTICAL CLOSURES
+        /*
+         *Closures are useful because the let you associate data(the lexical environment) with a function that operates on the data.
+         *this way you can use a closure anywhere you might normally use an object with only a single method
+         * used in event listeners
+         */
+
+        //KYLES WEDEVSIMPLIFIED CLOSURES
+    </script>
+</body>
+
+</html>

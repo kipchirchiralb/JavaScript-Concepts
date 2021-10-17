@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        .inner {
+            color: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>14 techniqies of DOM Manipulation</h1>
+    </div>
+    <div class="inner usingizi" id="sijui">
+        <span>Hello</span>
+        <span style="display: none;"> Bye</span>
+    </div>
+    <script>
+        //Adding elements to the page
+        const wrapper = document.querySelector(".wrapper")
+        wrapper.append("Hello world", " I am here to stay")
+            //append allows appending strings and any elements. You can also append multiple itemms
+            //appendchild() you can only append elements like divs, sections, anchors, span e.t.c and textNodes. You can only append one thing at a go.
+
+        //Creating elements
+        const subtitle = document.createElement("h3")
+        const textNode = document.createTextNode("Creating elements and appending to the dom")
+        subtitle.append(textNode) //first add text node to subtilte
+        wrapper.appendChild(subtitle) //then add subtitle to the div wrapper in the dom
+
+
+        // innerText displays only text visible on the screen whereas textContent returns all the text within an element including the structure(lines and spacing). Lets see the difference
+
+        const div = document.querySelector(".inner")
+        console.log(div.textContent) //prints out both hello and by with spaces and indentation
+        console.log(div.innerText) //prints out text just as visible on the page.
+
+
+        //rendering html into page.
+        div.innerHTML = "<strong>  Elploring the DOM with JS </strong>" //replaces everything that was previously in this div.
+
+        //removing elements from the dom
+        subtitle.remove() //removes subtitle completely out of visible dom
+        div.append(subtitle) //relocates subtitle to this div
+
+        //getting elements attributes
+        console.log(div.getAttribute("class"))
+
+        //setting element attributes
+        div.setAttribute("title", "nitakufinya") //add title attribute to tis dv
+        console.log(div.getAttribute("class"))
+
+        //removing attribute
+        div.removeAttribute("title")
+
+        //classes
+        div.classList.add("jhjkhkhk")
+        div.classList.toggle("inner", false)
+
+        //style
+        wrapper.style.color = "brown"
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Traversal</title>
+    <style>
+        body {
+            margin: 0 auto;
+        }
+        
+        div {
+            display: flex;
+            flex-wrap: wrap;
+            margin: .5rem;
+            padding: 1rem;
+            border: 3px solid black;
+            min-height: 1rem;
+            flex-grow: 1;
+        }
+        
+        div h1 {
+            flex: 0 0 100%;
+            padding-left: 2rem;
+        }
+        
+        .grandparent {
+            background-color: hsl(0, 50%, 50%);
+            flex-direction: column;
+        }
+        
+        .parent {
+            background-color: hsl(100, 50%, 50%);
+        }
+        
+        .child {
+            background-color: hsl(200, 50%, 50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>9 techniques of DOM traversal</h1>
+        <div class="grandparent" id="grandparentid">
+            <div class="parent">
+                <div class="child" id="firstchild"></div>
+                <div class="child"></div>
+            </div>
+            <div class="parent">
+                <div class="child" id="thirdchild"></div>
+                <div class="child" id="lastchild"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* //************FIRST PART********
+                                                                                                                                                                                        
+                                                                                                                                                                                        // selecting elements by ID
+                                                                                                                                                                                        const grandParent = document.getElementById("grandparentid")
+                                                                                                                                                                                        grandParent.style.border = "dotted"
+
+                                                                                                                                                                                        // selecting elements by class name
+                                                                                                                                                                                        // using Array.from() to make the collection returned by document.getElementsByClassName an array
+                                                                                                                                                                                        const parents = Array.from(document.getElementsByClassName("parent"))
+                                                                                                                                                                                            // iterate trrough all parent elements using forEach()
+                                                                                                                                                                                            // parents.forEach(changeColor)
+
+
+                                                                                                                                                                                        // selecting elements using querySelector()
+                                                                                                                                                                                        // if selected element class or name appear more than once, querySelector only selecs the first one. To select all elements of same name or class , we use querySelectorAll()
+                                                                                                                                                                                        const firstChild = document.querySelector("#firstchild")
+                                                                                                                                                                                        changeColor(firstChild)
+
+                                                                                                                                                                                        const grandParentTwo = document.querySelector(".grandparent")
+                                                                                                                                                                                        changeColor(grandParentTwo)
+
+                                                                                                                                                                                        // selecting all elements with same name or class name using querySelectorAll()
+                                                                                                                                                                                        const parentsAgain = document.querySelectorAll(".parent")
+                                                                                                                                                                                        parentsAgain.forEach(changeColor2)
+
+                                                                                                                                                                                        */
+
+        /*
+     //****************SECOND PART****
+        //SELECTING CHILDREN
+        const grandParent = document.querySelector(".grandparent")
+
+        const parents = Array.from(grandParent.children)
+            // parents.forEach(changeColor)
+
+        const parentOne = parents[0] //select first parent
+        changeColor(parentOne)
+
+        const children = parentOne.children
+        changeColor2(children[1])
+*/
+
+        //**********THIRD PART******** 
+        //QUERY SELECTOR CAN BE USED ON ANY ELEMENT IN THE DOM
+        const grandParent = document.querySelector(".grandparent")
+        const children = grandParent.querySelectorAll(".child")
+            //children.forEach(changeColor2)
+
+        //SELECTING PARENTS
+
+        const lastChild = document.querySelector("#lastchild")
+        changeColor(lastChild)
+        const parent = lastChild.parentElement
+        changeColor(parent)
+        const grandParentEl = parent.parentElement
+        changeColor2(grandParentEl)
+
+        //SKIPPING PARENT
+        //Just like query selector selects the closest child passed in, clossest() selects the closest parent matching passed identity
+        const thirdChild = document.querySelector("#thirdchild")
+        const grandParentElement = thirdChild.closest(".grandparent")
+        changeColor3(grandParentElement)
+
+        // MOVING SIDE WAYS, NEXT AND PREVIOUS ELEMENTS
+
+        const firstChild = document.querySelector("#firstchild")
+        const secondChild = firstChild.nextElementSibling
+        changeColor3(secondChild)
+
+        const firstChildAgain = secondChild.previousElementSibling
+
+        changeColor2(firstChildAgain)
+
+
+        // BASE FUNCTIONS
+        function changeColor(element) {
+            element.style.backgroundColor = "white"
+        }
+
+        function changeColor2(element) {
+            element.style.backgroundColor = "black"
+        }
+
+        function changeColor3(element) {
+            element.style.backgroundColor = "yellow"
+        }
+    </script>
+</body>
+
+</html>
