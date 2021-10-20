@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        button {
+            background-color: greenyellow;
+            border: 0;
+            border-radius: 5px;
+        }
+        
+        .altColor {
+            background-color: green;
+        }
+    </style>
+    <title>Callbaskc</title>
+</head>
+
+<body>
+    <h1>Callbacks</h1>
+
+    <button>Toggle color</button>
+
+    <script>
+        window.addEventListener("load", () => {
+            /*
+             * Callbacks are functions passed to other functions as prameters.
+             * In JS , functions are objects hence we can pass functions as parameters to other functions and call them inside the outer function.
+             * Callbacks make  sure that a function is not going to run before a task is completed but will run after a task is completed.
+             */
+            //CALLBACKS ARE SYNCHRONOUS UNLESS YOU DO SOMETHING LIKE setTimeOut or process
+            //RULE OF THUMB: Only setTimeOut, setInterval and events are asynchronous
+
+            const names = ["John", "Mary", "Bob"]
+
+            const greet = names.map(name => `Hello ${name}`) //this anonymous arrow function inside here is a callback function.
+
+            console.log(greet)
+
+            let greeting = (name) => console.log(`Hello ${name}`)
+
+            const userInfo = (firstName, lastName, callback) => {
+                const fullName = `${firstName} ${lastName}`
+                callback(fullName)
+            }
+
+            userInfo("Albert", "Melly", greeting) //this greeting function is a callback, it is called by the userInfo function as a parameter in it. 
+
+
+            //CALLBACK HELL - what the hell!!
+
+
+            /*
+            const createHEll = {
+              doSomething : function(result) {
+                 let doSomethingElse => (result, function(newResult) {
+                    let doThirdThing = (newResult, function(finalResult) {
+                        console.log("Got the final result" + finalResult)
+                    }, console.log("3FAILED!!"))
+                }, console.log("2FAILED!!"))
+            }, console.log("1FAILED!!")
+
+            */
+
+            greeting("JJ")
+
+
+            //button e listener
+
+            const button = document.querySelector("button")
+
+            function toggle() {
+                button.classList.toggle("altColor")
+            }
+
+            button.addEventListener("click", toggle) //togle her is out callback function
+                // callback functions can be called inside other functions/methods as parameters or defined inside these functions as anonymous arrow functions or even named functions. as long aas it is a function inside another function
+
+            //WAIT A MINUTE - NO ACTUALLY 7 SECONDS, FIVE THEN TWO
+
+            let firstAction = (callbackFunction) => {
+                console.log("First Action!!!")
+                setTimeout(callbackFunction, 2000)
+            }
+
+            let secondAction = (message) => {
+                console.log(message)
+            }
+
+            // setTimeout(firstAction, 5000) // firstAction - without parameters/arguments -  is a callback
+
+            //setTimeout(firstAction(secondAction), 5000) //we opened up parenthesis so it is no longer a callback. This code is run synchronously/immediately during execution
+
+            //TO SOLVE THE ABOVE AND RETURN TO ASYNC PROG
+
+            //setTimeout(() => firstAction(secondAction), 5000) //we have made a first action a callback to an anonymous function
+
+            //lets now create hell - both firstAction and secondAction taking parameters
+
+            setTimeout(() => firstAction(() => secondAction("call me secondAction, I come in 2 seconds after first actionk")), 5000)
+        })
+
+        //COMMON JAVASCRIPT BUILT-IN CALLBACK FUNCTONS ARE: filter, map,
+    </script>
+</body>
+
+</html>

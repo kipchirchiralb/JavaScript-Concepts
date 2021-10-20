@@ -61,6 +61,7 @@
             let x = e.clientX
             let y = e.clientY
             let currentCollor = getComputedStyle(document.body).getPropertyValue("background-color")
+                //is it posible to name these colors? are there names to all colors? or if there is a name to the randomly chosen color, can you print it out instead of the rgb code? Or just try to covert the rgb to hex and or vice versa
             console.log(`You clicked point(${x}, ${y}) on the document, current color is ${currentCollor} `)
         })
 
@@ -82,10 +83,10 @@
                 }, 100)
             }
         }
-
+        //now lets create an object person of class Person with 
         const person = new Person("Albert")
-        person.printNameArrow() //
-        person.printNameFunction() //
+        person.printNameArrow() //albert
+        person.printNameFunction() // nothing
     </script>
 
 </body>

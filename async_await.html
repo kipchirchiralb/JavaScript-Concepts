@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Async Await</title>
+</head>
+
+<body>
+    <h1>
+        async await
+    </h1>
+    <script>
+        //first, lets learn something abot a generator function. This is a special function.
+        // what makes a generator function are the * and yield. 
+        //in below example, generatorFunc(), we are getting the data, pausing the function until we recieve the data and then doing something with the data.
+
+        function* generatorFunc() {
+            let data = getData()
+            yield dataconsole.log(data)
+        }
+
+        //USING OUR CODE FROM PROMISES
+
+        const hasMeeting = false;
+        const meeting = new Promise((resolve, reject) => {
+            if (hasMeeting) {
+                const meetingDetails = {
+                    name: "Marketing Meeting",
+                    location: "Skype",
+                    time: "1:00PM",
+                    printMeetingDetails: () => {
+                        console.log(`You have a ${meetingDetails.name} at ${meetingDetails.time}. Location: ${meetingDetails.location}`)
+                    }
+                }
+                resolve(meetingDetails)
+            } else {
+                reject(new Error("ERROR: Meeting already/not scheduled"))
+            }
+        })
+
+        const addToCalender = meetingDetails => {
+            const calender = `${meetingDetails.name} is scheduled at ${meetingDetails.time} on ${meetingDetails.location}`
+
+            return Promise.resolve(calender)
+        }
+
+        async function myMeeting() {
+            try {
+                const meetingDetails = await meeting
+                const message = await addToCalender(meetingDetails)
+                console.log(message)
+            } catch (err) {
+                console.log(err.message)
+            }
+        }
+        myMeeting()
+
+        // myMeeting().catch(err => console.log(err.message)) //this is an alternative for try catch, since you dont wanna do this for all function calls in a large code.
+    </script>
+</body>
+
+</html>

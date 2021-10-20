@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Promises</title>
+</head>
+
+<body>
+    <h1>Promises</h1>
+
+    <script>
+        //*******codeSTACKr***
+
+        //A promise does something if something else is true, if it is not true then it wont.
+        //A promise is used to handle an assynchronous result of an operation.
+        //With promises we can defer a codeblock untill a assynchronous request is completed. This way other operations can keep running without interruption.
+        //A lot of modern javascript libraries uses promises.
+        //Promises can hav 3 states pending , fulfilled and rejected.
+
+
+        //lets now make our first promise called - meeting
+        const hasMeeting = true;
+        const meeting = new Promise((resolve, reject) => {
+            if (hasMeeting) {
+                const meetingDetails = {
+                    name: "Marketing Meeting",
+                    location: "Skype",
+                    time: "1:00PM",
+                    printMeetingDetails: () => {
+                        console.log(`You have a ${meetingDetails.name} at ${meetingDetails.time}. Location: ${meetingDetails.location}`)
+                    }
+                }
+                resolve(meetingDetails)
+            } else {
+                reject(new Error("ERROR: Meeting already/not scheduled"))
+            }
+        })
+
+        //make another promise - addToCallender  - with one variable- just return promise.resolve(variable)variable at the end instead of creating a promise first then recolve()
+        const addToCalender = meetingDetails => {
+
+            // return new Promise((resolve, reject) => {
+            const calender = `${meetingDetails.name} is scheduled at ${meetingDetails.time} on ${meetingDetails.location}`
+                //resolve(calender)
+                // })
+            return Promise.resolve(calender) //alternative for the 3 commented lines above
+
+            /*
+            //try again 
+             const newMessage = meetingDetails.printMeetingDetails()
+             return Promise.resolve(newMessage)
+             */
+        }
+
+        //to chain these two promises , we add a .then with addToCallender promise.This way if our meeting promise is resolved/succesful, then addToCalender promise is exceted. else both do are not excecuted.
+        meeting
+            .then(addToCalender)
+            .then(res => {
+                //resolve data
+                console.log("Meeting Scheduled")
+                console.log(res)
+            })
+            .catch(err => {
+                //reject data
+                console.log(err.message)
+            })
+
+        //SEEVERAL PROM(ISES
+
+        const promise1 = Promise.resolve("Promise 1 complete")
+        const promise2 = new Promise((res, rej) => {
+            setTimeout(() => {
+                res("Promise 2 complete")
+            }, 3000)
+        })
+
+        ////to call them one at a time
+        //promise1.then(res => console.log(res))
+        //promise2.then(res => console.log(res))
+
+        // //to call them both/if many all at the same time - you get them both as an array . use Promise.all()
+        // Promise.all([promise1, promise2]).then(res => console.log(res))
+
+        // //To return only the first promise to be completed we use Promise.race - in this case yu get the first promise1 which is immediate since it has no time out.
+        Promise.race([promise1, promise2]).then(res => console.log(res))
+
+
+        //PROMISES STILL USE CALBACKS BUT THEY ARE EASIER TO READ AND WRITE. THEY PROVIDE A WAY TO CONTINUE OUR CODE WHILE WAITING FOR SOMETHING ELSE.
+    </script>
+
+</body>
+
+</html>

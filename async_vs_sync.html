@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchrronous programmingonoues ve Sync</title>
+</head>
+
+<body>
+    <script>
+        //CHECK OUT HE ORDER IN WHICH THEY GET LOGGED ON THE CONSOLE.SYNCHRONOOUS CODE WILL BE EXECUTED FIRST ALWAYS
+
+        //MOST FUNCTIONS THAT TAKE FUNCTION RGUMENTS ARE GOING TO BE ASYNCHRONOUS FUNCTIONS
+
+        //in assynchronous progrmming, a funtion is called after something else has  happened or some condition has been met
+        let a = 1
+        let b = 2
+
+        setTimeout(function() {
+            console.log("Async . timeout:" + a)
+        }, 100)
+
+        a = 10
+
+        fetch("/async_vs_sync.html").then(function() {
+            console.log("FEtch")
+        })
+
+        console.log("synchronous")
+
+        console.log(a) //sync
+        console.log(b) //sync
+    </script>
+</body>
+
+</html>
