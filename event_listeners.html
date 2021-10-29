@@ -51,6 +51,10 @@
         </div>
     </div>
 
+    <div class="notes">
+        <progress id="progress" max="100" value="75">75%</progress>
+    </div>
+
     <script>
         const grandparent = document.querySelector(".grandparent")
         const parent = document.querySelector(".parent")
@@ -72,6 +76,23 @@
             console.log(e.target)
             console.log("clciked somewhere in the document")
         })
+
+
+        // ***********
+        //multiple events to a single element
+        "mouseover mouseout click".split(" ").forEach(function(e) {
+            document.querySelector("progress").addEventListener(e, changeBgColor, false)
+        })
+
+        function changeBgColor() {
+            let x = Math.floor(Math.random() * 256);
+            let y = Math.floor(Math.random() * 256);
+            let z = Math.floor(Math.random() * 256);
+            let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+            console.log(bgColor);
+
+            document.body.style.background = bgColor;
+        }
     </script>
 
 </body>
