@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array methods</title>
+</head>
+<body>
+    <div>
+        <h2>Array Methods</h2>
+        <ul>
+            <li>filter()</li>
+            <li>map()</li>
+            <li>forEach()</li>
+            <li>some()</li>
+        </ul>
+    </div>
+    <script>
+        const items =[
+            {name: "bike", price: 100},
+            {name: "bike2", price: 200},
+            {name: "bike3", price: 10},
+            {name: "bike4", price: 5},
+            {name: "bike5", price: 500},
+            {name: "bike6", price: 1000},
+            {name: "bike7", price: 25},
+        ]
+
+
+        // filter method
+        const filteredItems = items.filter((item) =>{
+            return item.price < 100
+        })
+        console.log("%cFilter Method", "color:green; font-family:sans-serif; font-size: 25px")
+        console.log(filteredItems)
+
+        // map method
+        const itemNames = items.map((item) =>{
+            return item.name
+        })
+        console.log("%cMap Method", "color:green; font-family:sans-serif; font-size: 25px")
+        console.log(itemNames)
+        
+        // find method
+
+        const foundItem = items.find((item)=>{
+            return item.name==="bike"
+        })
+        console.log("%cFind Method", "color:green; font-family:sans-serif; font-size: 25px")
+        console.log(foundItem)
+        
+        // forEach
+        console.log("%cforEach Method", "color:green; font-family:sans-serif; font-size: 25px")
+        items.forEach((item) => { 
+            console.log(item.price)
+        })
+
+        // some - returns true or false - check is atleast one item in an array satisfues a set condition
+        console.log("%csome Method", "color:green; font-family:sans-serif; font-size: 25px")
+        const hasInexpensiveitems = items.some((item)=>{
+            return item.price<=100
+        }
+        )
+        console.log(hasInexpensiveitems)
+        //every - returns true or false - checks if every item in an array satisfy a set condition
+        console.log("%cevery Method", "color:green; font-family:sans-serif; font-size: 25px")
+        const allItemsAre = items.every((item)=>{
+            return item.price<=1000
+        })
+        console.log(allItemsAre)
+
+        //reduce - wierd one
+        console.log("%cevery Method", "color:green; font-family:sans-serif; font-size: 25px")
+        const total = items.reduce((currentTotal, item)=>{
+            return item.price + currentTotal
+        }, 0)
+        console.log(total)
+
+        //includes - check if an item passed in it is in the array - returns true or false
+        //push() - adds item to the end f an array
+        
+        //pop() - removes item at the end of an array
+
+       
+
+        //arr.concate(array) - merges two arrays
+
+        //join() - joins all elements in an array to form a string and also as all the above does not modify the array
+
+        //reverse() - reverses all elemnts in an array - modifies the array
+
+         //shift() - removes first element in an array and return the element - modifies the array
+
+         //unshift(x) - adds x to the start of an array
+
+         //slice(1,5) - returns elements in the array from indexes 1 to 5-1  - doesn not modify original array
+
+         //sort() - sort array, alphabetically
+
+         //splice(2,5, "add me") - returns new array from index 2 , counts 5 elements tha follow and adds "add me" to index 2 of it
+        console.log("%cincludes Method", "color:green; font-family:sans-serif; font-size: 25px")
+
+        const nums = [1,2,34,33,44,3,2,22]
+        const nummbers = [4,55,55,442,11,4,24,24,34,3]
+
+        let letters = ["a","r","e","c","r","d"]
+        letters.sort()
+        console.log(letters)
+
+        const numsIncludesTwentyTwo = nums.includes(22) //true
+        const numbersIncludesTwentyTwo = nummbers.includes(22) //false
+
+        console.log(numsIncludesTwentyTwo)
+        console.log(numbersIncludesTwentyTwo)
+
+        
+    </script>
+</body>
+</html>

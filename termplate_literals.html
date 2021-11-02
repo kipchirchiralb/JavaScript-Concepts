@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    <title>Template Literals</title>
+</head>
+<body>
+    <h1>TEMPLATE LITERALS</h1>
+    <p>Template literals use backticks ` instead of single or double quotes</p>
+    <P>ES6 introduced template literals that :-</P>
+    <ul>
+        <li>made easy writing multiline strings and keep all white space when printed</li> 
+        <li> or strings with variables. Variables are put directly inside ${} withour concatenations</li>
+        <li>When you want to use certain escape sequences such as new lines or tabs</li>
+    </ul>
+
+    <h2>Tagged Template Literals</h2>
+    <p>Tagged template literals gives us the ability to runa function on the content of template literals. For example, String.raw`hs\njfh\tsjf` which skips the execution of escape sequence and turn the whole literal to anormal string</p>
+    <h3>Uses of tagged template literals</h3>
+    <ul>
+        <li>Bolding all values with tagged template literals</li>
+        <li>Removing newlines from multiline strings</li>
+        <li>querying elements with tagged template literals</li>
+        <li></li>
+    </ul>
+    <script>
+
+    console.log("TH")
+    let myname="albert"
+    console.log(`${myname} please focus\nOn your\t\tgoals.`)
+
+    console.log(String.raw`%cTagged\nTemplate\tliterals`) //skipping execution of escape sequences
+
+    //wierd stuff, see this
+    function custom(strings ,...values){
+        return values.reduce((finalString, value, index) => {
+        return `${finalString}${value}${strings[index + 1]}`
+  }, strings[0])
+
+    }
+    const name ="Albert"
+    const hobby = "bike riding"
+    custom`My name is ${name} and I love ${hobby}`
+</script>
+</body>
+</html>
