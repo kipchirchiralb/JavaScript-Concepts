@@ -80,8 +80,8 @@
 
         // ***********
         //multiple events to a single element
-        "mouseover mouseout click".split(" ").forEach(function(e) {
-            document.querySelector("progress").addEventListener(e, changeBgColor, false)
+        "mouseover mouseout click".split(" ").forEach(function(event) {
+            document.querySelector("progress").addEventListener(event, changeBgColor, false)
         })
 
         function changeBgColor() {

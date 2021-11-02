@@ -6,11 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            padding: 20px;
+            line-height: 1.5rem;
+        }
+        
+        strong,
+        em {
+            padding: 0;
+        }
+    </style>
     <title>Arrow Functions</title>
 </head>
 
 <body>
     <h1>Arrow Functions</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Differences between arrow functions and clasical functions</th>
+            </tr>
+            <tr>
+                <th>Classical functions</th>
+                <th>Arrow functions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>The <em>this</em> keyword is bound to different values based on the <strong>context</strong> in which the function is called. <br> Context here refers to the object that calls the function . <br> by using js bound() , call() or apply()
+                    you can alter context within which a functon is executed, changing the meaning of <em>this</em> inside of that function when it is executed. <br> You could also create a a variable say "self" and assign it to <em>this</em> . This variable
+                    is in the <strong>lexical scope</strong> of the callback function. </td>
+                <td>arrow functions use the value of <em>this</em> in their <strong>lexical scope</strong>. <br> Scope contains all variables visible to a function where is is defined. <br> Arrow functions solve the <strong>context</strong> problem in classical
+                    functions by introducing the lexical scope automatically. This means it just uses the value of this in the surrounding code block. It doesn’t care what calls it, it just cares where it was defined. <br></td>
+            </tr>
+            <tr>
+                <th colspan="2">Function expressions are best for object methods. Arrow functions are best for callbacks or methods like map, reduce, or forEach.</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+
+    </table>
 
     <script>
         //normal function
@@ -47,7 +95,7 @@
 
         console.log(randomNumber())
             //anonymus arrow function
-        document.addEventListener("mouseover", () => {
+        document.addEventListener("click", () => {
             let letters = "0123456789ABCDEF"
             let color = "#"
             for (let i = 0; i < 6; i++) {
