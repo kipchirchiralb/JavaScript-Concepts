@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Null vs Undefined</title>
+</head>
+
+<body>
+    <h1>Null Vs Undefined</h1>
+    <p>basically both mean that there is no value. Infact equating both using loose equality sign == will return true. However, using strict equality === will return false.</p>
+
+    <h4>So what really are their differences?</h4>
+
+    <h3>Null</h3>
+    <p> When a variable is null it means that the variable has no value and it was explicitly set to have null value by the programmer. This means a variable will never be null unles set to null in the code. </p>
+    <p>For example, in a find function that queries a database for an entry. If no entry exists it makes the most sense to return null since you are stating that there is no value found.</p>
+
+    <h3>Undefined</h3>
+    <p>?Undefined means there is no value because no value has been set. If you create a variable and do not assign it a value, then it will be null.</p>
+
+    <h4>What now? When do I use these?</h4>
+
+    <p>Essentially you could set a variable to <em>undefined</em> when trying to convey a message that the variable no longer contains any useful information while when the value is <em>null</em> you are specifically saying the result of some action has
+        no value</p>
+
+
+    <p> </p>
+    <script>
+        let a
+        console.log(a)
+
+        let b = null
+        console.log(b)
+
+        let c = undefined
+        console.log(c)
+    </script>
+</body>
+
+</html>
