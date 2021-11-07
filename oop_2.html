@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP</title>
+</head>
+
+<body>
+    <h1>OOP second document - ES6 - syntactic sugar - meaning it is an easier way to write things but behind the scenes everything is done the same way</h1>
+
+    <script>
+        class Book {
+            constructor(title, author, year) {
+                this.title = title;
+                this.author = author;
+                this.year = year;
+            }
+            getSummary() {
+                return `${this.title} was written by ${this.author} in ${this.year}`
+            }
+            reviseYear(newYear) {
+                this.year = newYear
+            }
+            getAge() {
+                    const years = new Date().getFullYear() - this.year
+                    return years
+                }
+                //static method - we do not have to instatiate a static method
+            static topBookStore() {
+                return "dummy text"
+            }
+
+        }
+
+        const book1 = new Book("Book One", "Albert Kip", "2021")
+
+        console.log(book1)
+        console.log(book1.getSummary())
+        book1.reviseYear(2010)
+        console.log(book1.getAge())
+        console.log(book1.year)
+
+        //try instatntiating a static method 
+
+        // console.log(book1.topBookStore()) //not a function error
+
+        //without instantiating
+        console.log(Book.topBookStore()) //works - returns dummy text
+
+        //subclass -  a class which inherits both the properties and behaviors of another class, while also having the ability to modify the properties of that class without editing the class itself.
+
+        console.log("%cSubclasses / inheritance", "color: green; font-size: 25px")
+
+        // create a subclass magazine which inherits all book properties and add more of its own - 
+
+        class Magazine extends Book {
+            constructor(title, author, year, month) {
+                super(title, author, year);
+                this.month = month
+
+            }
+        }
+
+        //instantiate a magazine
+        const mag1 = new Magazine("Mag One", "Albert KK", "2011", "july")
+
+        console.log(mag1)
+    </script>
+</body>
+
+</html>

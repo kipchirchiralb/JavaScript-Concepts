@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        OOP
+    </title>
+</head>
+
+<body>
+    <h1>OOP - classes Objects, and Constructors</h1>
+    <h3>Window Object</h3>
+    <p>window is the absolute parent object, therefore window methods can be called without window. prefix. For example instead of <em>window.alert()</em> you could just write <em>alert()</em> and get the same result. </p>
+    <p>Another example of a window object is <strong>navigator</strong> which provides info on the system being used. Try this <em>navigator.appVersion</em>. AppVersion is and object property</p>
+
+    <H3 style="text-align: center;">ES5</H3>
+
+
+    <script>
+        let s1 = new String()
+        let s2 = "hello world"
+        console.log(typeof s1)
+        console.log(typeof s2)
+
+        console.log(navigator.appVersion)
+
+        //Object literals
+        console.log("%cObject literal", "color:green; font-size: 23px")
+        const book1 = {
+            title: "Book one",
+            author: "John Doe",
+            year: "2003",
+            getSummary: function() {
+                return `${this.title} was written by ${this.author} in ${this.year}`
+            }
+        }
+        const book2 = {
+            title: "Book Two",
+            author: "Jane Doe",
+            year: "2003",
+            getSummary: function() {
+                return `${this.title} was written by ${this.author} in ${this.year}`
+            }
+        }
+        console.log(book1)
+        console.log(book1.getSummary())
+        console.log(book2.getSummary())
+        console.log("%cObjects have key value pairs. We can obtain both the keys and the values using the below methods", "color:green; font-size: 1rem")
+
+        console.log(Object.values(book1))
+        console.log(Object.keys(book1))
+
+        //Constructors 
+        console.log("%cConstructors", "color: green; font-size: 23px")
+            //To avoid repeating code , like for the above, book1 and book2 have similar properties, we can use a constructor
+        function Book(title, author, year) {
+            this.title = title;
+            this.author = author;
+            this.year = year;
+
+            this.getSumm = function() {
+                return `${this.title} was written by ${this.author} in ${this.year}`
+            }
+        }
+        //Instantiate an object - This way we can create many other books with reduced code and same keys but different values. The values are passed as arguments. Every instance created also has a prototype - see console.
+        const book3 = new Book("Book Three", "Albert Kip", "2021")
+        console.log(book3)
+        const book4 = new Book("Book Four", "Joseph Kip", "2021")
+        console.log(book4.year)
+        console.log(book4.getSumm())
+        console.log(Object.values(book4))
+        console.log(Object.keys(book4))
+
+        //Prototypes
+        console.log("%cPrototypes", "color:green; font-size: 23px")
+
+        //Car constructor
+        function Car(model, year, price, image) {
+            this.model = model;
+            this.year = year;
+            this.price = price;
+            this.image = image;
+            this.revised = false
+        }
+
+        //request a quote - the prorotype
+        Car.prototype.requestQuote = function() {
+            return `What is the price of ${this.model}, ${this.year} `
+        }
+        Car.prototype.makeOffer = function() {
+            return `I am  offering 650,00 for ${this.model}, ${this.year}`
+        }
+        Car.prototype.getAge = function() {
+            const years = new Date().getFullYear() - this.year
+            return `${this.model} is ${years} years old`
+        }
+
+        Car.prototype.revisePrice = function(newPrice) {
+            if (this.revised) {
+                console.log("%cprice already revised", "color: red")
+            } else {
+                this.price = newPrice
+                this.revised = true
+            }
+
+        }
+        const vitz = new Car("Toyota Vits", 2014, 700000, "image here!!")
+
+
+
+        console.log(vitz)
+        console.log(vitz.model)
+        console.log(vitz.requestQuote())
+        console.log(vitz.getAge())
+        vitz.revisePrice(783999)
+            // vitz.revisePrice(888888)
+        console.log(vitz)
+
+        //Inheritance - bike having car properties
+        console.log("%cInheritance", "color:green; font-size: 23px")
+            // SuperBike constructor
+        function Bike(model, year, price, image, topSpeed) {
+            Car.call(this, model, year, price, image)
+            this.topSpeed = topSpeed
+        }
+
+        //To inherit prototypes of Car to Bike - Make sure to pu this line before intansiating Bike objects
+        Bike.prototype = Object.create(Car.prototype)
+
+        //create an instance of a bike
+        const kawasaki = new Bike("kawasaki ninja H2r", 2018, 12000000, "image here!!", 320)
+        console.log(kawasaki)
+
+
+        //now try using Car prototypes on Bike
+        console.log(kawasaki.requestQuote())
+        console.log(kawasaki.getAge())
+
+        //Objects of Prototypes
+        //ANOTHER WAY OF DOING THINGS
+        const laptopProtos = {
+            getSummary: function() {
+                return `${this.brand}, ${this.screenSize}, ${this.gen} `
+            },
+            makeOffer: function(offer) {
+                return `I'd like to pay ${offer} for ${this.getSummary()} `
+            }
+        }
+
+        //Create Object
+        const hp1 = Object.create(laptopProtos);
+        hp1.brand = "Hp elitebook 8440p"
+        hp1.screenSize = "13.3 inch full hd"
+        hp1.gen = "10th generation"
+
+        console.log(hp1)
+        console.log(hp1.makeOffer(35544))
+    </script>
+</body>
+
+</html>

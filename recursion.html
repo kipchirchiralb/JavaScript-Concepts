@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Recursion</title>
+</head>
+
+<body>
+    <h1>Recursion</h1>
+    <p>a function that calls itself</p>
+    <p>It is a way of solviving problems where a solution uses a solution from another smaller instance of the same problem</p>
+
+    <script>
+        //non-recursive count down from n to 0
+        function countDown(n) {
+            for (let i = n; i > 0; i--) {
+                console.log(i)
+            }
+            console.log("Go!! non-recursive")
+        }
+        countDown(5)
+
+        //recursive countdown
+        function countDownRecursive(n) {
+            if (n <= 0) {
+                console.log("Go!! Recursive!")
+                return
+            }
+            console.log(n)
+            countDownRecursive(n - 1) //the function calling itself
+        }
+        countDownRecursive(10)
+
+        //sum a range of numbers - non-recursive
+        function sumRange(n) {
+            let total = 0
+            for (let i = n; i > 0; i--) {
+                total += i
+
+            }
+            console.log(`${total} is the total from a non-recursive`)
+        }
+        sumRange(5)
+
+        //sum of a range of numbers - recursive
+        function sumRangeRecursive(n, total = 0) {
+            if (n <= 0) {
+                return total
+            }
+            return sumRangeRecursive(n - 1, total + n)
+        }
+        console.log(`${sumRangeRecursive(5)} is the total of sum of a range from a recursive`)
+
+        //a more dedicated way of using recursion
+
+        function printChildren(t) {}
+
+        function printChildrenRecursive(t) {
+            if (t.children.length === 0) {
+                return
+            }
+            t.children.forEach(child => {
+                console.log(child.name)
+                printChildrenRecursive(child)
+            });
+        }
+
+        const tree = {
+            name: "John",
+            children: [{
+                name: "Kyle",
+                children: []
+            }, {
+                name: "Kim",
+                children: [{
+                    name: "joung",
+                    children: []
+                }, {
+                    name: "Hu",
+                    children: []
+                }]
+            }]
+        }
+
+        printChildrenRecursive(tree)
+    </script>
+</body>
+
+</html>

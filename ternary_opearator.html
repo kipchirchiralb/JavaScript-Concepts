@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ternary/Conditional Operator</title>
+</head>
+
+<body>
+    <h1>Ternary/Conditional Operator</h1>
+    <p>The conditional (ternary) operator is the only JavaScript operator that takes three operands: a condition followed by a question mark (?), then an expression to execute if the condition is truthy followed by a colon (:), and finally the expression
+        to execute if the condition is falsy. This operator is frequently used as a <strong>shortcut for the if statement</strong> </p>
+
+    <h3>syntax</h3>
+    <p>condition ? eprIfTrue : exprIfFalse</p>
+
+
+
+    <script>
+        function getFee(isMember) {
+            return (isMember ? "$2.00" : "$10.00")
+        }
+
+        console.log(getFee(true)) //returns the truthy value $2.00
+        console.log(getFee(false)) //returns the falsy value $10.00
+        console.log(getFee(null)) //$10.00 , other possible falsy values are NaN, 0, "", undefined
+
+
+        //Another example
+
+        let age = 2 //try other values to see outcome
+        let beverage = (age >= 21) ? "Beer" : "Juice"
+        console.log(beverage)
+
+
+        //handling a value that may be null from a db / fetch
+
+        let greeting = person => {
+            let name = person ? person.name : "stranger"
+            return `Hello , ${name}`
+        }
+        console.log(greeting(null)) //hello stranger
+
+
+        //The ternary operator is right-associative, which means it can be chained in a way similar to if .. else if ... else if ... else chain
+
+        function grader(grade) {
+
+            return grade <= 30 ? 'FAIL' : (
+                grade <= 40 ? 'E' :
+                grade <= 50 ? 'D' :
+                grade <= 60 ? 'C' :
+                grade <= 70 ? 'B' :
+                "A")
+        }
+
+        console.log(grader(40))
+
+        // //ANOTHER USE CASE
+        // let authenticated = true;
+        // let nextURL = authenticated ? (
+        //     alert('You will redirect to admin area'),
+        //     window.location.href = "/index.html"
+        // ) : (
+        //     alert('Access denied'),
+        //     window.location.href = "http://www.w3schools.com"
+
+        // );
+        // redirect to nextURL here
+        // console.log(nextURL); // '/admin'
+
+
+        //TRY THIS
+        let speed = 70;
+        let message = speed >= 120 ? 'Too Fast' : (speed >= 80 ? 'Fast' : 'OK');
+        console.log(message);
+    </script>
+</body>
+
+</html>
