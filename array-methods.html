@@ -55,7 +55,18 @@
             return item.name
         })
         console.log("%cMap Method", "color:green; font-family:sans-serif; font-size: 25px")
-        console.log(itemNames)
+        console.log(itemNames);
+        //using map() and max to find highest value in array
+        var maxValue = Math.max.apply(null,
+        items.map((value) =>{ return value.price; }));
+     
+      console.log(`the most expensive bike cost :${maxValue}`);
+      //minimum value
+      var maxvalue = Math.min.apply(null,
+        items.map((value) =>{ return value.price; }));
+     
+      console.log(`the cheapest bike cost :${maxvalue}`);
+
 
         // find method
 
@@ -89,7 +100,21 @@
         const total = items.reduce((currentTotal, item) => {
             return item.price + currentTotal
         }, 0)
-        console.log(total)
+        console.log(total);
+        // Returns the highest value in array
+        function Maximum(arr){
+            var maxValue=Number.MIN_VALUE; //Number. MIN_VALUE is the smallest positive number (not the most negative number) that can be represented within float precision
+        //loop
+        for (var i=0;i<items.length;i++){
+            //test condition to filter
+            if(items[i].price>maxValue){
+                maxValue=items[i].price;
+            }
+        }
+        return maxValue;
+        }
+        //pass the array as argument to the function
+        console.log(`Most expensive Bike cost :${Maximum(items)}`);
 
         //includes - check if an item passed in it is in the array - returns true or false
         //push() - adds item to the end f an array
